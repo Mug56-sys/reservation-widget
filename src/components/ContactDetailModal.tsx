@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 export default function BookTablePage({
   SetName,
@@ -7,7 +6,8 @@ export default function BookTablePage({
   name,
   PeopleOpt,
   day,
-  HourOption
+  HourOption,
+ 
 }: {
   SetName: React.Dispatch<React.SetStateAction<string>>;
   number: number;
@@ -16,6 +16,7 @@ export default function BookTablePage({
   HourOption:string;
   day:string;
   PeopleOpt:number;
+  
 }) {
   
   return (
@@ -46,9 +47,10 @@ export default function BookTablePage({
               SetNumber(e.target.value=== '' ? 0 :Number(e.target.value))}}
         />
         <button className={`w-1/2 mt-5 p-2  text-white text-md cursor-pointer border  rounded-xl border-black text-nowrap 
-          ${number===0 || name===''  ? 'pointer-events-none cursor-not-allowed bg-gray-300': 'bg-blue-500'}`}>
+          ${number===0 || isNaN(number) || name===''  ? 'pointer-events-none cursor-not-allowed bg-gray-300': 'bg-blue-500'}`}>
           Confirm Reservation
-        </button>
+         </button>
+          {number===0 || name==='' || isNaN(number) ? <p className="text-sm text-red-500">Please Check if you provided everything</p>: null}
       </div>
     </div>
   );
